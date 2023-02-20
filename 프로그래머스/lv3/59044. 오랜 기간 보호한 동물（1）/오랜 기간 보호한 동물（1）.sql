@@ -1,8 +1,7 @@
 -- 코드를 입력하세요
-SELECT i.name, i.datetime
-FROM animal_ins i
-LEFT JOIN animal_outs o
-ON i.animal_id = o.animal_id
-WHERE o.animal_id is null
-ORDER BY i.datetime ASC
+SELECT ins.name, ins.datetime
+FROM animal_ins ins
+LEFT JOIN animal_outs outs ON ins.animal_id = outs.animal_id
+WHERE ins.animal_id IS NOT NULL AND outs.animal_id IS NULL
+ORDER BY 2
 LIMIT 3
