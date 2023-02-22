@@ -1,6 +1,6 @@
 -- 코드를 입력하세요
-SELECT Hour(datetime), count(*)
+SELECT Hour(datetime) AS hour, COUNT(*) AS count
 FROM animal_outs
-WHERE 9 <= Hour(datetime) AND Hour(datetime) < 20
-GROUP BY Hour(datetime)
+GROUP BY hour
+Having hour between 9 and 19
 ORDER BY 1
