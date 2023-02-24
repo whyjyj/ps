@@ -1,7 +1,5 @@
 -- 코드를 입력하세요
-SELECT ingredient_type, SUM(f.total_order) as TOTAL_ORDER
-FROM first_half f 
-    INNER JOIN icecream_info i
-    ON f.flavor = i.flavor
-GROUP BY i.ingredient_type
-ORDER BY TOTAL_ORDER ASC
+SELECT ingredient_type, SUM(total_order) AS total_orders
+FROM first_half f
+JOIN icecream_info i ON f.flavor = i.flavor
+GROUP BY ingredient_type
