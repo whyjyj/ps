@@ -9,8 +9,8 @@ vector<ll> tree;
 
 // num: num array
 // tree: segment tree
-// node: 노드 번호
-// node에 저장되어 있는 합의 범위가 start - end
+// nodeNum: 노드 번호
+// node에 저장되어 있는 합의 범위가 nodeL - nodeR
 void init(vector<long long> &num, vector<long long> &tree, int nodeNum, int nodeL, int nodeR)
 {
     // Leaf
@@ -68,8 +68,11 @@ int main()
 
     cin >> n >> m >> k;
 
+    int h = (int)ceil(log2(n));
+    int tree_size = 1 << (h + 1);
+
     num.resize(n);
-    tree.resize(4 * n);
+    tree.resize(tree_size);
 
     for (int i = 0; i < n; i++)
     {
