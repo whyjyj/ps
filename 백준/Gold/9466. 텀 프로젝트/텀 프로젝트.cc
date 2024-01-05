@@ -21,8 +21,9 @@ void task(int start)
 
         // next
         cur = adj[cur];
+
         // case 1
-        // cur까지 모두 NOT_IN_CYCLE 처리
+        // cur 전까지 모두 NOT_IN_CYCLE 처리
         if (state[cur] == IN_CYCLE || state[cur] == NOT_IN_CYCLE)
         {
             cur = start;
@@ -34,16 +35,18 @@ void task(int start)
             return;
         }
         // case 2
+        // cur은 CYCLE에 포함되므로 돌면서 CYCLE 처리
+        // start는 포함되지 않으므로 여기서부터 CYCLE 처음 진입 전까지 모두 NOT_IN_CYCLE 처리
         else if (state[cur] == VISITED && cur != start)
         {
-            while (state[cur] != IN_CYCLE)
+            while (state[cur] == VISITED)
             {
                 state[cur] = IN_CYCLE;
                 cur = adj[cur];
             }
 
             cur = start;
-            while (state[cur] != IN_CYCLE)
+            while (state[cur] == VISITED)
             {
                 state[cur] = NOT_IN_CYCLE;
                 cur = adj[cur];
@@ -51,6 +54,7 @@ void task(int start)
             return;
         }
         // case 3
+        // 자기 자신으로 돌아왔다면 다시 돌면서 모두 CYCLE 처리
         else if (state[cur] == VISITED && cur == start)
         {
             while (state[cur] == VISITED)
